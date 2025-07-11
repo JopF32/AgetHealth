@@ -1,0 +1,8 @@
+streamlit
+google-cloud-aiplatform
+google-cloud-storage>=2.0.0
+langchain
+langchain-google-vertexai
+langchain-community
+faiss-cpu
+pymupdf

@@ -1,0 +1,24 @@
+steps:
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/kyndryl-datalake/infinitydelta/rag-chatbot-infinitydelta:latest' # Etiqueta 'latest'
+      - '.'
+    id: 'Build Docker Image'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'us-central1-docker.pkg.dev/kyndryl-datalake/infinitydelta/rag-chatbot-infinitydelta:latest'
+    id: 'Push Latest Tag'
+    waitFor: ['Build Docker Image'] # Esperar a que la imagen se construya
+
+
+
+images:
+  - 'us-central1-docker.pkg.dev/kyndryl-datalake/infinitydelta/rag-chatbot-infinitydelta:latest'
+
+#Configurar un timeout para la construcción completa
+timeout: '1200s' # 20 minutos
